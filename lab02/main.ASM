@@ -1,5 +1,4 @@
-﻿; Вводим N. Если четный, то сумма четных до N, иначе сумма нечетных до N
-%TITLE ""
+﻿%TITLE ""
 INCLUDE IO.ASM
 
 MODEL   small
