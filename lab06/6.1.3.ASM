@@ -57,11 +57,11 @@ A3:
 	MOV SI, 0
 	MOV CX, i
 
-A4:
-	MOV arr[BX][SI], 0
-	SUB SI, N
-	ADD SI, N
-	ADD SI, 2
+    A4:
+	   MOV arr[BX][SI], 0
+	   SUB SI, N
+	   ADD SI, N
+	   ADD SI, 2
 	LOOP	A4
 
 	DEC i

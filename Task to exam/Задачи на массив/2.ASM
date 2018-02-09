@@ -1,59 +1,90 @@
-; Является ли массив упорядоченным по возрастанию?
-; 1 - Да. 0 - Нет.
-%TITLE ""
-INCLUDE IO.ASM
+%TITLE "‚ и Є®¬¬Ґ в аЁ© Їа®Ја ¬¬л" 
+INCLUDE IO.ASM 
 
-LOCALS  __
+MODEL small 
 
-MODEL   small
+ST1 SEGMENT ;ЋЇЁб «Ё бҐЈ¬Ґ в бвҐЄ ; 
+db 32 dup(?) 
+ST1 ENDS 
 
-ST1 SEGMENT
-    DB 128 DUP(?)
-ST1 ENDS
-
-DATA SEGMENT
-    arr              dw  100 DUP(?)
-    N                dw  ?
-    answer           dw  0
-DATA ENDS
+DATA SEGMENT 
+a Dw 128 DUP(?) 
+t dw 0 
+n dw ? 
+n2 dw ? 
+s dw ? 
+DATA ENDS 
 
 
-CODE SEGMENT
-ASSUME SS:ST1,DS:DATA,CS:CODE
+CODE SEGMENT ;®вЄал«Ё бҐЈ¬Ґ в Є®¤ ; 
+ASSUME SS:ST1,DS:DATA,CS:CODE 
 
-Start:
-    push    ds
-    push    ax
-    mov ax, data    
-    mov ds, ax
-;================ Code below ================
-; Ввод массива
-    inint N
-    mov CX, N
-    mov BX, 0       ; Индекс элемента
-A1:
-    inint arr[BX]
-    add BX, 2
-    LOOP    A1
+
+
+Start: 
+push ds 
+push ax 
+
+
+inint n 
+mov bx,0 
+mov cx,n 
+
+l: 
+
+inint a[bx] 
+add bx,2 
+loop l 
+
+
+
+    mov cx, n
+k:
+    mov si, cx 
+    dec si 
+    mov bx, si 
+    add bx, si
     
-    mov CX, N
-    dec CX
-    mov BX, 0
-A2:
-    mov AX, arr[BX+2]
-    cmp AX, arr[BX]
-    JL A3           ; arr[BX+2] < arr[BX]
-        mov answer, 1
-        add BX, 2
-        LOOP    A2
+    mov ax, a[bx] 
+    mov bp, bx
+    mov bx, 0 
+    mov si, cx 
+h:
+    cmp ax, a[bx] 
+    jg f 
+    mov ax,a[bx] 
+    mov bp,bx 
+    f:
+        add bx,2 
+loop h
+    mov cx,si 
+    mov di,a[bp] 
+    dec si 
+    mov bx,si 
+    add bx,si 
+    mov dx,a[bx] 
+    mov a[bp],dx 
+    mov a[bx],di 
+loop k 
 
-A3:
-    outint answer
-;================ Code above ================
-    pop ax
-    pop ds
-Exit:
-    finish
-ENDS
+
+
+
+
+
+mov cx,n 
+mov bx,0 
+l1: 
+
+outint a[bx],4 
+add bx,2 
+loop l1 
+
+
+pop ax 
+pop ds 
+Exit: 
+finish 
+ENDS 
 
 END Start
