@@ -54,8 +54,8 @@ A2:
 
 A3:
 	PUSH CX
+    MOV CX, i
 	MOV SI, 0
-	MOV CX, i
 
     A4:
 	   MOV arr[BX][SI], 0
